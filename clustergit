@@ -542,7 +542,6 @@ def analyze(git_dirs: List[GitDir], options: argparse.Namespace) -> int:
                 # Wait for parallel execution to finish
                 for i, (future, label) in enumerate(fs.items()):
                     while not future.done():
-                        clearline(f'Waiting for {label} {next(spinner)} ({i + 1}/{len(fs)})')
                         time.sleep(0.1)
                     write_with_color(sys.stdout, future.result().get_msg_buffer_as_str())
         finally:
